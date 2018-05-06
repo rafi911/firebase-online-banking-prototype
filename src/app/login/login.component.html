@@ -1,0 +1,49 @@
+<html>
+  <head>
+      <script>
+          $(document).ready(function() {
+              function disableBack() { 
+              window.history.forward() 
+            }
+              window.onload = disableBack();
+              window.onpageshow = function(evt) { 
+              if (evt.persisted) disableBack() 
+            }
+          });
+      </script>
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <mat-card class="col-md-4">
+       
+          <form  (ngSubmit)="onSubmit(SignInForm)" #SignInForm="ngForm">
+  
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" type="email" #email="ngModel" [(ngModel)]="user.email" id="email" name="email">
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Password" type="password" #password="ngModel"  [(ngModel)]="user.password" id="password" name="password"/>
+              </mat-form-field>
+              
+              <br/>
+              <button type="submit"  mat-raised-button color="primary" [disabled]="!SignInForm.valid">Login</button>
+            </form>
+  
+      </mat-card>
+      <div class="col-md-4"></div>
+    </div>
+   
+
+     
+
+        
+
+        
+        
+     
+  </body>
+</html>
+

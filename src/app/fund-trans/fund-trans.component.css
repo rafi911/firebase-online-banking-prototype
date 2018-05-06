@@ -1,0 +1,22 @@
+.example-form {
+   
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .row{
+      margin-top: 5%;
+      margin-left: 20%;
+      margin-right: 20%;
+      margin-bottom: 5%;
+      
+  }
+  b{
+      color: gray
+  }
+ h5{
+     color: dodgerblue;
+ }
+  

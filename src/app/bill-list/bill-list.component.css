@@ -1,0 +1,19 @@
+h5{
+    color: dodgerblue;
+}
+.subTitle{
+    color: gray;
+}
+mat-card-content{
+    padding-left: 0.5%;
+}
+b{
+    color: dodgerblue;
+}
+mat-card{
+    margin: 2%;
+}
+body{
+    width: 100%;
+    overflow: hidden;
+}

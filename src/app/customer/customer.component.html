@@ -1,0 +1,44 @@
+<body>
+  <mat-card>
+      <div class="row">
+          <div class="col-md-4" id="firstRaw"></div>
+          <div class="col-md-4">
+              <img  mat-card-image src="assets/image/user.png" alt="user profile">
+          </div>
+          <div class="col-md-4"></div>    
+        </div>
+    
+    
+        <div class="row">
+          <div class="col-md-4"  >
+            <p><b>{{name}}</b></p>
+            <p>Name</p>
+          </div>
+    
+          <div class="col-md-4" >
+            <p><b>{{gender}}</b></p>
+            <p>Gender</p>
+          </div>
+          <div class="col-md-4">
+            <p><b>{{age}}</b></p>
+            <p>Age</p>
+          </div>
+        </div>
+  </mat-card>
+  <mat-card>
+      <p>Account no : <b>{{acc_no}}</b></p>
+      <p>Balance : <b>{{balance | currency:'LKR '}}</b></p>
+      <p>Branch : <b>{{branch}}</b></p>
+      <p>Country : <b>{{country}}</b></p>
+
+      <button  mat-raised-button color="warn" (click)="Logout()">Logout</button>
+  </mat-card>
+     
+    
+   
+    <!-- <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
+
+</body>

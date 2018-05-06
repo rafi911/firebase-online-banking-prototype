@@ -1,0 +1,43 @@
+<body>
+  <mat-card *ngFor="let fund of (Funds | async)?.slice().reverse()">
+    <mat-card-header>
+      <mat-card-title><h6>Amount : {{fund.amount | currency:'LKR '}}</h6></mat-card-title>
+      <mat-card-subtitle>Receive No : {{fund.receiverNo}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <b class="subTitle"><u>Receiver detail</u></b>
+      <div class="row">
+        <div class="col-md-4">
+          <p>Bank name : <b>{{fund.receiverBankName}}</b></p>
+        </div>
+        <div class="col-md-4">
+            <p>City : <b>{{fund.city}}</b></p>
+        </div>
+        
+        <div class="col-md-4">
+              <p>Country : <b>{{fund.country}}</b></p>
+        </div>
+            
+        
+      </div> 
+      
+    </mat-card-content>
+    <!-- <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
+  </mat-card>
+  <div class="row">
+      <div class="col-md-4">
+         
+      </div>
+      <div class="col-md-7">
+         
+      </div>
+      <div class="col-md-1">
+          <button mat-fab (click)="openDialog()">
+              <mat-icon>add</mat-icon>
+          </button>
+      </div>
+    </div>
+</body>

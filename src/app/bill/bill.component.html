@@ -1,0 +1,40 @@
+
+<div class="row">
+    <mat-card class="col-md-12">
+        <mat-card-header>
+          
+          <mat-card-title><h5>New Bill</h5></mat-card-title>
+          
+        </mat-card-header>
+        <mat-card-content>
+          
+          <form class="example-form" (ngSubmit)="onSubmit(billForm)" #billForm="ngForm">
+            <mat-form-field>
+                    <mat-select placeholder="Bill type" #Type="ngModel"  [(ngModel)]="bill.Type" name="Type" id="Type">
+                      <mat-option value="Water bill">Water bill</mat-option>
+                      <mat-option value ="Electricity bill">Electricity bill</mat-option>
+                      <mat-option value ="Online reload">Online reload</mat-option>
+                    </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Amount" #amount="ngModel" [(ngModel)]="bill.amount" id="amount" name="amount">
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Ref" #Ref="ngModel"  [(ngModel)]="bill.Ref" id="Ref" name="Ref"/>
+            </mat-form-field>
+            
+            
+            <button type="submit"  mat-raised-button color="primary" [disabled]="!billForm.valid">Add bill</button>
+            
+
+          </form>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+            <button type="submit"  mat-raised-button color="primary" [disabled]="!fundForm.valid">Fund</button>
+        </mat-card-actions> -->
+      </mat-card>
+</div>
+
+

@@ -1,0 +1,46 @@
+
+<div class="row">
+    <mat-card class="col-md-12">
+        <mat-card-header>
+          
+          <mat-card-title><h5>New Fund</h5></mat-card-title>
+          
+        </mat-card-header>
+        <mat-card-content>
+          
+          <form class="example-form" (ngSubmit)="onSubmit(fundForm)" #fundForm="ngForm">
+            <b>detail of sender</b>
+            
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Amount" #amount="ngModel" [(ngModel)]="Fund.amount" id="amount" name="amount"/>
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Sender name" #senderName="ngModel"  [(ngModel)]="Fund.senderName" id="senderName" name="senderName"/>
+            </mat-form-field>
+            <br/>
+            <br/>
+            <b>detail of receiver</b>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Receiver number" #receiverNo="ngModel" [(ngModel)]="Fund.receiverNo" id="receiverNo" name="receiverNo"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Receiver bank Name" #receiverBankName="ngModel" [(ngModel)]="Fund.receiverBankName" id="receiverBankName" name="receiverBankName"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="City" #city="ngModel" [(ngModel)]="Fund.city" id="city" name="city"/>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Country" #country="ngModel" [(ngModel)]="Fund.country" id="country" name="country"/>
+            </mat-form-field>
+            
+            <button type="submit"  mat-raised-button color="primary" [disabled]="!fundForm.valid">Fund</button>
+          </form>
+        </mat-card-content>
+        <!-- <mat-card-actions>
+            <button type="submit"  mat-raised-button color="primary" [disabled]="!fundForm.valid">Fund</button>
+        </mat-card-actions> -->
+      </mat-card>
+</div>
+
+
