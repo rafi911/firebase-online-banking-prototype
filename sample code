@@ -1,0 +1,66 @@
+private List<Servers> servers = new List<Servers>();
+        Servers server = new Servers();
+        public Form1()
+        {
+            InitializeComponent();
+            servers.Add(new Servers
+            {
+                ServerIP = "172.90.209.23"
+            });
+            servers.Add(new Servers
+            {
+                ServerIP = "172.90.209.23"
+            });
+            servers.Add(new Servers
+            {
+                ServerIP = "172.90.209.23"
+            });
+            servers.Add(new Servers
+            {
+                ServerIP = "172.90.209.23"
+            });
+
+            DataTable dataTable = Servers.ToDataTable1(servers);
+            Server_Service_Table.DataSource = dataTable;
+            Server_Service_Table.AutoGenerateColumns = false;
+            Server_Service_Table.AllowUserToAddRows = false;
+        }
+
+        private void Server_Service_Table_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row_index = e.RowIndex;
+            for (int i = 0; i < Server_Service_Table.Rows.Count; i++)
+            {
+                Server_Service_Table.Rows[i].Cells["Select"].Value = false;
+            }
+
+
+            var currentObject = Server_Service_Table.CurrentRow.DataBoundItem;
+       
+            var selectedPilots = Server_Service_Table.SelectedRows;
+            //MessageBox.Show(selectedPilots.ServerIP.ToString());
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //DataTable dtServiceTable = new DataTable();
+            //dtServiceTable.Columns.Add("UserID", typeof(string));
+            //dtServiceTable.Columns.Add("UserName", typeof(string));
+            //dtServiceTable.Columns.Add("PhoneNo", typeof(string));
+            //dtServiceTable.Columns.Add("Select", System.Type.GetType("System.Boolean"));
+
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    DataRow rw = dtServiceTable.NewRow();
+            //    rw[0] = "UserID" + i;
+            //    rw[1] = "UserName" + i;
+            //    rw[2] = "PhoneNo" + i;
+            //    rw[3] = false;
+
+            //    dtServiceTable.Rows.Add(rw);
+            //}
+
+            //Server_Service_Table.DataSource = dtServiceTable;
+            //Server_Service_Table.AutoGenerateColumns = false;
+            //Server_Service_Table.AllowUserToAddRows = false;
+        }
