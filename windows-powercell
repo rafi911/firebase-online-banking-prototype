@@ -4,3 +4,57 @@ https://www.codeproject.com/Articles/326909/Creating-a-WCF-Service-with-MSMQ-Com
 
 https://blogs.msdn.microsoft.com/biztalknotes/2013/03/07/biztalk-group-configuration-issues/
 http://www.meadow.se/wordpress/retrieving-the-message-count-is-msmq-queues/
+
+
+public string ServerIP { get; set; }
+        public string MSMQStatus { get; set; }
+        public string RDMStatus { get; set; }
+        public int MessageCount { get; set; }
+
+
+        public static  DataTable ToDataTable(List<Servers> list)
+        {
+            PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(Servers));
+            DataTable table = new DataTable();
+            for (int i = 0; i < props.Count; i++)
+            {
+                PropertyDescriptor prop = props[i];
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            }
+            object[] values = new object[props.Count];
+            foreach (Servers item in list)
+            {
+                for (int i = 0; i < values.Length; i++)
+                    values[i] = props[i].GetValue(item) ?? DBNull.Value;
+                table.Rows.Add(values);
+            }
+            return table;
+        }
+
+        public static DataTable ToDataTable1(List<Servers> data)
+        {
+            PropertyDescriptorCollection properties =
+                TypeDescriptor.GetProperties(typeof(Servers));
+            DataTable table = new DataTable();
+
+
+            foreach (PropertyDescriptor prop in properties)
+            {
+                
+                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+            }
+            table.Columns.Add("Select", System.Type.GetType("System.Boolean"));
+
+            foreach (Servers item in data)
+            {
+                DataRow row = table.NewRow();
+                foreach (PropertyDescriptor prop in properties)
+                {
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                    row["Select"] = false;
+                }
+                    
+                table.Rows.Add(row);
+            }
+            return table;
+        }
