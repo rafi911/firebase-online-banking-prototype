@@ -1,0 +1,35 @@
+## connect with back-end ####
+1.  in startup class
+
+public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200"));
+            });
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            //app.UseCors("CorsPolicy");
+            //app.UseCors(builder => builder.WithOrigins(""))
+            // Shows UseCors with named policy.
+            app.UseCors("AllowSpecificOrigin");
+
+            app.UseMvc();
+        }
+       
+     2. in Controller class
+     [EnableCors("AllowSpecificOrigin")]
+     
+     ## install bootstrap ##
+     https://medium.com/@sunilk/getting-started-angular-6-and-ng-bootstrap-4-4b314e015c1c
+     
+     
