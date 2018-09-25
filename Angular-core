@@ -32,4 +32,36 @@ public void ConfigureServices(IServiceCollection services)
      ## install bootstrap ##
      https://medium.com/@sunilk/getting-started-angular-6-and-ng-bootstrap-4-4b314e015c1c
      
-     
+     ## create Drop down
+     1. add grid system bootstrap, import { ReactiveFormsModule } from '@angular/forms';
+     2. add drop down
+     ## html##
+     <mat-form-field>
+  <mat-select placeholder="Favorite animal" [formControl]="animalControl" required>  
+    <mat-option *ngFor="let animal of animals" [value]="animal">
+      {{animal.value}}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+  <!-- <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+</mat-form-field>
+ 
+ ## ts ##
+ import {FormControl, Validators} from '@angular/forms';
+ interface Animal {
+  value: string;
+}
+  animalControl = new FormControl('', [Validators.required]);
+  animals: Animal[] = [
+    {value: 'Dog'},
+    {value: 'Cat'},
+    {value: 'Cow'},
+    {value: 'Fox'},
+  ];
+  
+  
+ 3.  ## pass data to parent comp from child comp
+ in child component,
+ import { Component, Input  } from '@angular/core';
+  
+
