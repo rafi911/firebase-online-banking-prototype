@@ -1,0 +1,93 @@
+If(empData != null)
+{
+	currentScenario.position comes from sheet [Secondary Scenario duty summary],
+								table [B], column [Abrevation] with current row
+	If(currentScenario.position is not null)
+	{
+		Do
+		{
+			If([Secondary Scenario duty summary].[abrevation] == PosGroup) // e.x "SM"
+			{
+				Do
+				{
+					CopyData = get selected row data from sheet [Secondary Scenario duty summary]
+					If( Activate.SheetName == currentScenario.sheetName)
+					{
+						currentScenario.activate = true;
+					}
+					//Past [CopyData] in sheet [Assistance Calculation] with current row by below format
+					[2nd column.value] = [CopyData].Country
+					select next column of [2nd column.value]
+					
+					Past [CopyData] to rest of column
+					
+				} while(getting empty data error)  // end loop
+				
+				Set "None" value to with all columns except first 4 columns in selected row and sheet [Assistance Calculation]
+				
+				Select first 4 columns except 1st column(Scenario column)
+				
+				//empData.PosNameFull = selected position name from [Secondary Scenario duty summary]
+				If(empData.PosNameFull Contains "Manager")
+				{
+					[current Position] = get the position of last column in current row
+					[current position].value = empData.TCVloume  +"Crew"
+				}
+				else If(empData.NOTE Contains "Crew")
+				{
+					[current Position] = get the position of last column in current row
+					[current position].value = empData.TCVloume  +"Crew"
+				}
+				else If(empData.NOTE Contains "Sandwich")
+				{
+					[current Position] = get the position of last column in current row
+					[current position].value = empData.TCVloume  +"Sandwichs"
+				}
+				else If(empData.NOTE Contains "FC")
+				{
+					[current Position] = get the position of last column in current row
+					[current position].value = empData.TCVloume  +"FC TCs"
+				}
+				else 
+				{
+					[current Position] = get the position of last column in current row
+					[current position].value = empData.TCVloume  +"Total TCs"
+				}
+				
+				
+				if(currentScenario.ingCurrentTC == 0)
+				{
+					[current Position] = 0;
+				}
+				else
+				{
+					same previous If-Else condition
+				}
+				
+				In [Assistance Calculation] sheet,
+				"VLH Cell" Column value = PosGroup
+				"VLH Description" column value = PosNameFull + number
+			
+				Copy "Formula Assistance" values of all columns from Assistance Formula row
+				Past it in current row of table [B] in "Running Crew Counts Area"
+				
+				if(empData.PosNameFull Contains "Manager")
+				{
+					If(current entry with new scenario) // scenario1 , scenario2 and so on
+					{
+						Update "Total Crew Count" = 0
+					}
+					else If (Preview row "Total Crew Count" value > 0)
+					{
+						Update "Total Crew Count" = Preview row "Total Crew Count" value + current value
+					}
+				}
+				
+				in Table [B]
+				"Utilization" column value = empData.Utilization
+				
+				move to next row
+			}
+		} while ( !currentScenario.position Contains "Manager" || "Lobby" || "Pre/BackUp"
+	}
+}
